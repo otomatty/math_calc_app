@@ -1,12 +1,15 @@
 import React from "react";
-import ProblemSelectionScreen from "./components/ProblemSelection/ProblemSelectionScreen";
+import { Routes, Route } from "react-router-dom";
+import ProblemSelectionScreen from "./screens/ProblemSelection/ProblemSelectionScreen";
+import ProblemConfirmScreen from "./screens/ProblemConfirm/ProblemConfirmationScreen.jsx";
 
 function App() {
   return (
-    <div>
-      <h1>計算問題アプリ</h1>
-      <ProblemSelectionScreen />
-    </div>
+    <Routes>
+      <Route path="/" element={<ProblemSelectionScreen />} />
+      <Route path="/confirm" element={<ProblemConfirmScreen />} />
+      <Route path="/select" element={<ProblemSelectionScreen />} />
+    </Routes>
   );
 }
 

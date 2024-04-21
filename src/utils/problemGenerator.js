@@ -1,67 +1,98 @@
-function generateInteger() {
-  return Math.floor(Math.random() * 100) + 1; // 1から100までの整数
+function generateInteger(includeNegatives) {
+  const range = 100;
+  let number = Math.floor(Math.random() * (range + 1));
+  if (includeNegatives) {
+    number *= Math.random() < 0.5 ? 1 : -1;
+  }
+  return number;
 }
 
-function generateFraction() {
-  const numerator = Math.floor(Math.random() * 9) + 1; // 分子（1から9）
-  const denominator = Math.floor(Math.random() * 9) + 1; // 分母（1から9）
-  return `${numerator}/${denominator}`; // 文字列として分数を返す
+function generateFraction(includeNegatives) {
+  const numerator = generateInteger(includeNegatives);
+  const denominator = Math.floor(Math.random() * 8) + 2; // Avoid denominator being 1
+  return `${numerator}/${denominator}`;
 }
 
-function generateDecimal() {
-  return (Math.random() * 10).toFixed(1); // 0.1から10.00までの少数
+function generateDecimal(includeNegatives) {
+  let number = (Math.random() * 10).toFixed(1);
+  if (includeNegatives && Math.random() < 0.5) {
+    number = "-" + number;
+  }
+  return number;
 }
 
-function generateRandomNumber(selectedFormats) {
+function generateRandomNumber(selectedFormats, includeNegatives) {
   const format =
     selectedFormats[Math.floor(Math.random() * selectedFormats.length)];
   switch (format) {
     case "整数":
-      return generateInteger();
+      return generateInteger(includeNegatives);
     case "分数":
-      return generateFraction();
+      return generateFraction(includeNegatives);
     case "少数":
-      return generateDecimal();
+      return generateDecimal(includeNegatives);
     default:
-      return generateInteger(); // デフォルトは整数を返す
+      return generateInteger(includeNegatives);
   }
 }
 
-function generateProblem(type, selectedFormats, terms) {
+function generateProblem(
+  selectedTypes,
+  selectedFormats,
+  terms,
+  includeNegatives
+) {
+  const type = selectedTypes[Math.floor(Math.random() * selectedTypes.length)];
+
   let problem = "";
   let numbers = [];
 
   for (let i = 0; i < terms; i++) {
-    numbers.push(generateRandomNumber(selectedFormats));
+    numbers.push(generateRandomNumber(selectedFormats, includeNegatives));
   }
 
-  // 問題の種類に応じた演算子で数値を結合
   switch (type) {
-    case "加法":
+    case "addition":
       problem = numbers.join(" + ");
       break;
-    case "減法":
+    case "subtraction":
       problem = numbers.join(" - ");
       break;
-    case "乗法":
+    case "multiplication":
       problem = numbers.join(" × ");
       break;
-    case "除法":
+    case "division":
       problem = numbers.join(" ÷ ");
       break;
     default:
-      problem = "不明な問題タイプ";
+      //   console.log("Unknown problem type:", type);
+      problem = "Unknown problem type";
   }
 
-  return problem + " = ?";
+  //   console.log("Generated problem:", problem); // Log the generated problem for debugging
+
+  return problem + " = ";
 }
 
-function generateProblems(type, selectedFormats, terms, count) {
+function generateProblems(
+  selectedTypes,
+  selectedFormats,
+  terms,
+  count,
+  includeNegatives
+) {
   const problems = [];
   for (let i = 0; i < count; i++) {
-    const problem = generateProblem(type, selectedFormats, terms);
+    const problem = generateProblem(
+      selectedTypes,
+      selectedFormats,
+      terms,
+      includeNegatives
+    );
     problems.push(problem);
   }
+  //   console.log("Generated problems:", problems); // Log the generated problems for debugging
   return problems;
 }
+
 export { generateProblems };
