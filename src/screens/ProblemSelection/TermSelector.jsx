@@ -1,16 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import Container from "../../components/layout/Container";
+import Wrapper from "../../components/layout/Wrapper";
 import Description from "../../components/ui/Description";
 import SelectBox from "../../components/common/Selectbox"; // ModernSelectBoxをインポート
-
-// スタイル定義
-const Container = styled.div`
-  padding: 20px;
-  background-color: #f8f9fa;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
 
 // コンポーネント定義
 const TermSelector = ({ selectedTerms, onSelect }) => {
@@ -23,19 +15,19 @@ const TermSelector = ({ selectedTerms, onSelect }) => {
   ];
 
   return (
-    <>
+    <Container>
       <Description
         number={4}
         text={"問題の項数を選択してください。"}
       ></Description>
-      <Container>
+      <Wrapper>
         <SelectBox
           options={options}
           defaultValue={selectedTerms}
           onChange={(e) => onSelect(e.target.value)}
         />
-      </Container>
-    </>
+      </Wrapper>
+    </Container>
   );
 };
 

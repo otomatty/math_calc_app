@@ -7,6 +7,7 @@ import "katex/dist/katex.min.css";
 
 const ChipContainer = styled(motion.div)`
   width: 13%;
+  height: 100px;
   position: relative;
   display: inline-flex;
   flex-direction: column;

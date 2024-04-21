@@ -1,22 +1,8 @@
 import React from "react";
-import styled from "styled-components";
-import { createGlobalStyle } from "styled-components";
+import Container from "../../components/layout/Container";
+import Wrapper from "../../components/layout/Wrapper";
 import Chip from "../../components/common/Chip"; // Chip コンポーネントをインポート
 import Description from "../../components/ui/Description";
-
-const GlobalStyle = createGlobalStyle`
-  body {
-    font-family: 'Roboto', sans-serif;
-  }
-`;
-
-const Container = styled.div`
-  padding: 20px;
-  background-color: #f8f9fa;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
 
 const ProblemTypeToggle = ({ selectedTypes, onSelect }) => {
   // プロパティを受け取るように変更
@@ -40,13 +26,12 @@ const ProblemTypeToggle = ({ selectedTypes, onSelect }) => {
   ];
 
   return (
-    <>
-      <GlobalStyle />
+    <Container>
       <Description
         number={1}
         text={"問題の計算方法を選択してください"}
       ></Description>
-      <Container>
+      <Wrapper>
         {types.map(({ id, label, icon }) => (
           <Chip
             key={id}
@@ -56,8 +41,8 @@ const ProblemTypeToggle = ({ selectedTypes, onSelect }) => {
             onChange={() => toggleType(id)}
           />
         ))}
-      </Container>
-    </>
+      </Wrapper>
+    </Container>
   );
 };
 

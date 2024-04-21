@@ -16,13 +16,17 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const Container = styled.div`
+const Container = styled.main`
   max-width: 600px;
   margin: 0 auto;
   padding: 20px;
   background-color: #f8f9fa;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+`;
+
+const SelectWrapper = styled.div`
+  margin-bottom: 60px;
 `;
 
 const Title = styled.h2`
@@ -72,14 +76,14 @@ const ProblemSelectionScreen = () => {
   };
 
   const handleCreateProblems = () => {
-    // 問題生成ロジックを削除し、選択されたパラメータを問題確認画面に渡す
     navigate("/confirm", {
       state: {
         selectedTypes,
         selectedFormats,
         terms,
-        problemCount,
+        problemCount, // 1ページあたりの問題数
         includeNegatives,
+        pageCount, // 追加: ページ数
       },
     });
   };
@@ -89,38 +93,40 @@ const ProblemSelectionScreen = () => {
       <GlobalStyle />
       <Container>
         <Title>問題選択</Title>
-        <ProblemTypeToggle
-          selectedTypes={selectedTypes}
-          onSelect={(types) => {
-            setSelectedTypes(types);
-          }}
-        />
-        <NumberFormatToggle
-          selectedFormats={selectedFormats}
-          onSelect={handleSelectFormat}
-        />
-        <IncludeNegativeNumbersToggle
-          includeNegatives={includeNegatives}
-          onToggle={handleToggleIncludeNegatives}
-        />
-        <TermSelector
-          selectedTerms={terms}
-          onSelect={(terms) => {
-            setTerms(terms);
-          }}
-        />
-        <ProblemCountSelector
-          selectedCount={problemCount}
-          onSelect={(count) => {
-            setProblemCount(count);
-          }}
-        />
-        <PageCountSelector
-          selectedPageCount={pageCount}
-          onSelect={(count) => {
-            setPageCount(count);
-          }}
-        />
+        <SelectWrapper>
+          <ProblemTypeToggle
+            selectedTypes={selectedTypes}
+            onSelect={(types) => {
+              setSelectedTypes(types);
+            }}
+          />
+          <NumberFormatToggle
+            selectedFormats={selectedFormats}
+            onSelect={handleSelectFormat}
+          />
+          <IncludeNegativeNumbersToggle
+            includeNegatives={includeNegatives}
+            onToggle={handleToggleIncludeNegatives}
+          />
+          <TermSelector
+            selectedTerms={terms}
+            onSelect={(terms) => {
+              setTerms(terms);
+            }}
+          />
+          <ProblemCountSelector
+            selectedCount={problemCount}
+            onSelect={(count) => {
+              setProblemCount(count);
+            }}
+          />
+          <PageCountSelector
+            selectedPageCount={pageCount}
+            onSelect={(count) => {
+              setPageCount(count);
+            }}
+          />
+        </SelectWrapper>
         <CreateProblemButton
           selectedTypes={selectedTypes}
           selectedFormats={selectedFormats}

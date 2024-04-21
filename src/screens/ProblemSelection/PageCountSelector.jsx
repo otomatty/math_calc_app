@@ -1,13 +1,8 @@
 import React from "react";
-import styled from "styled-components";
+import Container from "../../components/layout/Container";
+import Wrapper from "../../components/layout/Wrapper";
 import Stepper from "../../components/common/Stepper"; // Stepper コンポーネントをインポート
 import Description from "../../components/ui/Description";
-
-const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-`;
 
 // コンポーネント定義
 const PageCountSelector = ({ selectedPageCount, onSelect }) => {
@@ -17,18 +12,18 @@ const PageCountSelector = ({ selectedPageCount, onSelect }) => {
   };
 
   return (
-    <>
+    <Container>
       <Description
         number={6}
         text={"作成するページ数を指定してください。"}
       ></Description>
-      <Container>
+      <Wrapper>
         <Stepper
           initialValue={selectedPageCount}
           onValueChange={handleValueChange}
         />
-      </Container>
-    </>
+      </Wrapper>
+    </Container>
   );
 };
 

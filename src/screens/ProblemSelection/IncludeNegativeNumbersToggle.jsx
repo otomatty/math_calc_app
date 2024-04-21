@@ -1,16 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-
+import Container from "../../components/layout/Container";
+import Wrapper from "../../components/layout/Wrapper";
 import Checkbox from "../../components/common/Checkbox";
 import Description from "../../components/ui/Description";
-
-const Container = styled.div`
-  padding: 20px;
-  background-color: #f8f9fa;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
 
 // ラベルスタイルを更新
 const StyledLabel = styled.label`
@@ -21,18 +14,18 @@ const StyledLabel = styled.label`
 
 const IncludeNegativeNumbersToggle = ({ includeNegatives, onToggle }) => {
   return (
-    <>
+    <Container>
       <Description
         number={3}
         text={"問題に「負の数」を含む場合はチェックを入れてください。"}
       ></Description>
-      <Container>
+      <Wrapper>
         <StyledLabel>
           <Checkbox checked={includeNegatives} onChange={onToggle} />
           負の数を含む
         </StyledLabel>
-      </Container>
-    </>
+      </Wrapper>
+    </Container>
   );
 };
 

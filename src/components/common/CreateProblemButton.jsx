@@ -1,5 +1,6 @@
 import React from "react";
 import { generateProblems } from "../../utils/problemGenerator";
+import Button from "../ui/Button";
 
 const CreateProblemButton = ({
   selectedTypes,
@@ -23,7 +24,7 @@ const CreateProblemButton = ({
     onCreateProblems(problems);
   };
 
-  return <button onClick={handleCreateProblem}>問題作成</button>;
+  return <Button onClick={handleCreateProblem}>問題作成</Button>;
 };
 
 export default CreateProblemButton;

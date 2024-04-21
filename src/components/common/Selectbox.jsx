@@ -7,7 +7,6 @@ const SelectContainer = styled.div`
   position: relative;
   width: 100%;
   max-width: 300px;
-  margin: 0 auto;
 `;
 
 const Select = styled.select`
@@ -17,7 +16,7 @@ const Select = styled.select`
   border-radius: 8px;
   border: 2px solid #ccc;
   background-color: white;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
   appearance: none; // ネイティブのセレクトボックスのスタイルを無効化
   &:focus {
     outline: none;

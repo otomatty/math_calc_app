@@ -1,16 +1,9 @@
 import React, { useCallback, useState } from "react";
-import styled from "styled-components";
-import Chip from "../../components/common/Chip"; // Chip コンポーネントをインポート
 import "katex/dist/katex.min.css"; // KaTeX CSSをインポート
+import Container from "../../components/layout/Container";
+import Wrapper from "../../components/layout/Wrapper";
+import Chip from "../../components/common/Chip"; // Chip コンポーネントをインポート
 import Description from "../../components/ui/Description";
-
-const Container = styled.div`
-  padding: 20px;
-  background-color: #f8f9fa;
-  display: flex;
-  flex-wrap: wrap; // 複数のチップがある場合に折り返す
-  gap: 10px; // チップ間の間隔
-`;
 
 const NumberFormatToggle = ({ onSelect }) => {
   // 数のフォーマットとそれに対応するアイコンをTeX形式で定義
@@ -46,13 +39,13 @@ const NumberFormatToggle = ({ onSelect }) => {
   );
 
   return (
-    <>
+    <Container>
       <Description
         number={2}
         text={"問題の「数の種類」を選択してください（複数選択可）"}
       ></Description>
       {/* <Text>出題する「数の種類」を選択してください（複数選択可）</Text> */}
-      <Container>
+      <Wrapper>
         {formats.map(({ label, icon }) => (
           <Chip
             key={label}
@@ -63,8 +56,8 @@ const NumberFormatToggle = ({ onSelect }) => {
             fontSize="24px" // Chipにフォントサイズを指定
           />
         ))}
-      </Container>
-    </>
+      </Wrapper>
+    </Container>
   );
 };
 

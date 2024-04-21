@@ -79,10 +79,13 @@ function generateProblems(
   selectedFormats,
   terms,
   count,
-  includeNegatives
+  includeNegatives,
+  pageCount = 1 // ページ数パラメータを追加
 ) {
+  const problemsPerPage = count; // 1ページあたりの問題数
+  const totalProblems = problemsPerPage * pageCount; // 総問題数を計算
   const problems = [];
-  for (let i = 0; i < count; i++) {
+  for (let i = 0; i < totalProblems; i++) {
     const problem = generateProblem(
       selectedTypes,
       selectedFormats,
@@ -91,7 +94,6 @@ function generateProblems(
     );
     problems.push(problem);
   }
-  //   console.log("Generated problems:", problems); // Log the generated problems for debugging
   return problems;
 }
 

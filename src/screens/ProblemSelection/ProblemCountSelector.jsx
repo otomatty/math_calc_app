@@ -1,17 +1,11 @@
 import React from "react";
 import styled from "styled-components";
+import Container from "../../components/layout/Container";
+import Wrapper from "../../components/layout/Wrapper";
+
 import RadioButton from "../../components/common/RadioButton"; // RadioButton コンポーネントをインポート
 import Description from "../../components/ui/Description";
 import ModalTooltip from "../../components/ui/ModalTooltip";
-
-const Container = styled.div`
-  padding: 20px;
-  background-color: #f8f9fa;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  gap: 10px;
-`;
 
 const DescriptionBox = styled.div`
   display: flex;
@@ -26,7 +20,7 @@ const ProblemCountSelector = ({ selectedCount, onSelect }) => {
   };
 
   return (
-    <>
+    <Container>
       <DescriptionBox>
         <Description
           number={5}
@@ -37,7 +31,7 @@ const ProblemCountSelector = ({ selectedCount, onSelect }) => {
           <img src="image_url_here" alt="説明画像" />
         </ModalTooltip>
       </DescriptionBox>
-      <Container>
+      <Wrapper flexDirection="column">
         {counts.map((count) => (
           <RadioButton
             key={count}
@@ -48,8 +42,8 @@ const ProblemCountSelector = ({ selectedCount, onSelect }) => {
             onChange={handleChange}
           />
         ))}
-      </Container>
-    </>
+      </Wrapper>
+    </Container>
   );
 };
 
